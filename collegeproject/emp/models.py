@@ -6,7 +6,7 @@ from django.db import models
 #creating seperate class for dept and we will link it later using foreign key
 class Dept(models.Model):
     name=models.CharField(max_length=100,null=False)
-    location=models.CharField(max_length=100)
+    
 
     def __str__(self):
         return self.name
@@ -18,6 +18,7 @@ class Role(models.Model):
         return self.name
 # Create your models here.
 class Employee(models.Model):
+    
     first_name=models.CharField(max_length=100,null=False)  #first name cant be empty
     last_name=models.CharField(max_length=100)
     #linking department using foreign key
