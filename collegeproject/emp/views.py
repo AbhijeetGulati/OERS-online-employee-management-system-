@@ -56,4 +56,7 @@ def filter_emp(request):
         name=request.POST['name']
         dept=request.POST['dept']
         role=request.POST['role']
+        #now store all the detaile in emps
+        emps=Employee.objects.all()
+        
     return render(request,'filter_emp.html')
