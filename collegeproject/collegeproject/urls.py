@@ -22,6 +22,7 @@ urlpatterns = [
     
     path('add_emp',include('emp.urls')),
     path('remove_emp',include('emp.urls')),
+    path('remove_emp/<int:emp_id>',include('emp.urls')),#adding the parameter taking url also
     path('filter_emp',include('emp.urls')),
     path('view_emp',include('emp.urls')),
 ]

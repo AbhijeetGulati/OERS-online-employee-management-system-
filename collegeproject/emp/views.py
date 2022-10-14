@@ -36,8 +36,24 @@ def add_emp(request):
     else:
         return HttpResponse("Exception Occured! Employee Not Added")
 
-def remove_emp(request):
-    return render(request,'remove_emp.html')
-
+def remove_emp(request,emp_id=0):
+    if emp_id:
+        try:
+            emp_to_be_removed=Employee.objects.get(id=emp_id)#we will receive the values of the employee corresponding to the emp_id and then they will be stored in
+            #the variable emp_to_be_removed and then we will delete it
+            emp_to_be_removed.delete()
+            return HttpResponse("employee removed successfully")
+        except:
+            HttpResponse("please Enter valid EMP ID")
+    emps=Employee.objects.all()
+    context={
+        'emps':emps
+    }
+    return render(request,'remove_emp.html',context)
+#now we need to write logic for filter employee based on the method if its get or post
 def filter_emp(request):
+    if request.method=='POST':
+        name=request.POST['name']
+        dept=request.POST['dept']
+        role=request.POST['role']
     return render(request,'filter_emp.html')
