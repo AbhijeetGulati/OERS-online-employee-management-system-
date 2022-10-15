@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 #importing all the reqd models
 from .models import Employee,Dept,Role
+from django.db.models import Q
 
 # Create your views here.
 #creating index function
@@ -58,5 +59,20 @@ def filter_emp(request):
         role=request.POST['role']
         #now store all the detaile in emps
         emps=Employee.objects.all()
-        
-    return render(request,'filter_emp.html')
+        if name:
+            emps=(emps.filter(Q(first_name__icontains=name) | Q(last_name__icontains=name)))
+        if dept:
+            emps=emps.filter(dept__name__icontains=dept)
+        if role:
+            emps=emps.filter(role__name__icontains=role)  #using icontains if a name contains S we will get to see all the employees whose names contain an s
+#add to context now
+        context={
+            'emps':emps
+        }
+        return render(request,'view_emp.html',context)  #only filtered employees will be shown
+
+    elif request.method=='GET':
+       return render(request,'filter_emp.html')
+    else:
+        return HttpResponse("An exception Occured")
+

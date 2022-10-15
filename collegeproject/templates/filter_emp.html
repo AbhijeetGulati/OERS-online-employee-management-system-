@@ -9,16 +9,19 @@
         <h1>Filter the Employees</h1>
         <form action="/filter_emp" method="post">
             {% csrf_token %}
-              <label for="name" class="name">First Name/Last Name</label>
+              <label for="name" class="name">First Name/Last Name</label><br>
               <input type="text"  id="first_name" name="name" value="{{name}}" ><br>
               <hr>
               
-              <label for="dept" class="dept">Department</label>
-              <input type="number"  id="dept" name="dept" value="{{dept}}" ><br>
+              <label for="dept" class="dept">Department</label><br>
+              <input type="text"  id="dept" name="dept" value="{{dept}}" ><br>
               <hr>
-              <label for="role" class="role">Role</label>
-              <input type="number"  id="role" name="role" value="{{role}}" ><br>
+              <label for="role" class="role">Role</label><br>
+              <input type="text"  id="role" name="role" value="{{role}}" ><br>
+              <!-- Now dept and role will be filtered based on their names and not their ids-->
               <hr>
               <!-- We will filter based on these three parameters-->
+              <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
     </body>
 </html>
